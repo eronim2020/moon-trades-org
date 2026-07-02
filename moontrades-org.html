@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Moon Trades — Foundational Technologies for Lunar ISRU &amp; Space Resources</title>
+<meta name="description" content="Moon Trades is a Romanian deep-tech micro-enterprise developing lunar In-Situ Resource Utilisation (ISRU), regolith intelligence, and autonomous robotics for the multiplanetary future.">
+<meta name="theme-color" content="#0A0A0F">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Moon Trades — Foundational Technologies for Lunar ISRU">
+<meta property="og:description" content="Bridging Earth and the Moon through systems-grade lunar resource intelligence. Engineered with discipline. Built for the Mearth economy.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.moontrades.org">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg-0: #0A0A0F;
+    --bg-1: #0E1620;
+    --bg-2: #141C2A;
+    --text: #F5F5F7;
+    --text-muted: #A0A4AE;
+    --accent-blue: #2E4BFF;
+    --accent-mint: #5EE8C5;
+    --accent-orange: #D87440;
+    --hairline: rgba(245,245,247,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-0);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .starfield {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1px 1px at 28% 42%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1.5px 1.5px at 47% 71%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 64% 23%, rgba(255,255,255,0.7), transparent),
+      radial-gradient(1px 1px at 79% 56%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1.5px 1.5px at 88% 82%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 8% 78%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1px 1px at 95% 12%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 34% 88%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1.5px 1.5px at 56% 8%, rgba(255,255,255,0.6), transparent);
+    opacity: 0.55;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Navigation */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .nav-logo .mark { width: 32px; height: 32px; }
+  .nav-logo .wordmark {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.08em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  /* Hero */
+  .hero {
+    padding: 120px 0 100px;
+    text-align: center;
+    position: relative;
+  }
+  .hero-mark {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 48px;
+    display: block;
+  }
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(36px, 5.5vw, 64px);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    max-width: 920px;
+    margin: 0 auto 24px;
+  }
+  .hero h1 .accent { color: var(--accent-mint); }
+  .hero-sub {
+    font-size: clamp(16px, 1.6vw, 20px);
+    color: var(--text-muted);
+    max-width: 680px;
+    margin: 0 auto 48px;
+    line-height: 1.55;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent-blue);
+    color: var(--text);
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .hero-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 30px rgba(46,75,255,0.35);
+  }
+  .hero-meta {
+    margin-top: 64px;
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .hero-meta span::before {
+    content: "●";
+    margin-right: 8px;
+    color: var(--accent-mint);
+  }
+
+  section.block {
+    padding: 100px 0;
+    border-top: 1px solid var(--hairline);
+    position: relative;
+  }
+  .eyebrow {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-mint);
+    margin-bottom: 16px;
+  }
+  .block h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 3.8vw, 44px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    max-width: 800px;
+    margin-bottom: 24px;
+  }
+  .block .lede {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 720px;
+    line-height: 1.6;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 64px;
+  }
+  @media (max-width: 880px) { .cards { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--bg-1);
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    padding: 32px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .card:hover {
+    border-color: rgba(94,232,197,0.3);
+    transform: translateY(-2px);
+  }
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 24px;
+  }
+  .card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+  .card p {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* A.P.E.X. spotlight */
+  .apex {
+    background: var(--bg-1);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .apex-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  @media (max-width: 880px) { .apex-grid { grid-template-columns: 1fr; } }
+  .apex-visual {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .apex-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.32em;
+    color: var(--accent-mint);
+    margin-bottom: 12px;
+  }
+  .apex h2 { margin-bottom: 16px; }
+  .apex p { color: var(--text-muted); font-size: 16px; line-height: 1.7; margin-bottom: 16px; }
+  .apex-expansion {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--hairline);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .apex-expansion strong { color: var(--text); font-weight: 500; }
+  .nda-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+    padding: 8px 16px;
+    border: 1px solid rgba(94,232,197,0.3);
+    border-radius: 999px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--accent-mint);
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .nda-pill::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: var(--accent-mint);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent-mint);
+  }
+
+  .heritage {
+    text-align: center;
+  }
+  .heritage h2 { margin: 0 auto 24px; }
+  .heritage .lede { margin: 0 auto; }
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-top: 64px;
+    text-align: left;
+  }
+  @media (max-width: 880px) { .pillars { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .pillars { grid-template-columns: 1fr; } }
+  .pillar h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--accent-mint);
+    letter-spacing: 0.04em;
+  }
+  .pillar p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .partners {
+    background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+    border-radius: 16px;
+    padding: 64px;
+    margin: 0 32px;
+    text-align: center;
+  }
+  @media (max-width: 720px) { .partners { padding: 40px 24px; margin: 0; } }
+  .partners h2 { margin: 0 auto 16px; }
+  .partners .lede { margin: 0 auto 32px; }
+  .partner-tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .tag {
+    border: 1px solid var(--hairline);
+    color: var(--text-muted);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+
+  /* AdvisoryForge — discreet mention block */
+  .advisory-mention {
+    text-align: center;
+    padding-top: 0;
+  }
+  .advisory-mention p {
+    color: var(--text-muted);
+    font-size: 15px;
+    max-width: 620px;
+    margin: 20px auto 0;
+    line-height: 1.6;
+  }
+  .advisory-mention a.inline-link {
+    color: var(--accent-mint);
+    text-decoration: none;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .advisory-mention a.inline-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Minimal footer (privacy mode) */
+  footer {
+    border-top: 1px solid var(--hairline);
+    padding: 40px 0;
+    color: var(--text-muted);
+    font-size: 13px;
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+  footer .wordmark {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    margin-bottom: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+  }
+  footer .wordmark svg { width: 20px; height: 20px; }
+  footer .links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin: 16px 0 20px;
+    flex-wrap: wrap;
+  }
+  footer .links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  footer .links a:hover { color: var(--accent-mint); }
+  footer .copyright {
+    font-size: 12px;
+    color: var(--text-muted);
+    opacity: 0.7;
+  }
+
+  .moon-mark { color: var(--text); }
+  .moon-mark circle { fill: currentColor; }
+  .moon-mark .ring { fill: none; stroke: currentColor; stroke-width: 1.5; opacity: 0.7; }
+</style>
+</head>
+<body>
+
+<div class="starfield" aria-hidden="true"></div>
+
+<!-- Reusable logo mark SVG -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="moon-mark" viewBox="0 0 100 100">
+      <circle class="ring" cx="50" cy="50" r="46"/>
+      <circle cx="50" cy="50" r="5"/>
+      <circle cx="50" cy="36" r="3.5"/>
+      <circle cx="62.12" cy="43" r="3.5"/>
+      <circle cx="62.12" cy="57" r="3.5"/>
+      <circle cx="50" cy="64" r="3.5"/>
+      <circle cx="37.88" cy="57" r="3.5"/>
+      <circle cx="37.88" cy="43" r="3.5"/>
+      <circle cx="50" cy="24" r="3"/>
+      <circle cx="63" cy="26.5" r="3"/>
+      <circle cx="72.5" cy="35.5" r="3"/>
+      <circle cx="76" cy="50" r="3"/>
+      <circle cx="72.5" cy="64.5" r="3"/>
+      <circle cx="63" cy="73.5" r="3"/>
+      <circle cx="50" cy="76" r="3"/>
+      <circle cx="37" cy="73.5" r="3"/>
+      <circle cx="27.5" cy="64.5" r="3"/>
+      <circle cx="24" cy="50" r="3"/>
+      <circle cx="27.5" cy="35.5" r="3"/>
+      <circle cx="37" cy="26.5" r="3"/>
+    </symbol>
+  </defs>
+</svg>
+
+<nav>
+  <div class="container">
+    <a href="#top" class="nav-logo">
+      <svg class="mark moon-mark" viewBox="0 0 100 100"><use href="#moon-mark"/></svg>
+      <span class="wordmark">MOON TRADES</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#what">What We Do</a></li>
+      <li><a href="#apex">A.P.E.X.</a></li>
+      <li><a href="#heritage">Philosophy</a></li>
+      <li><a href="#partners">Partners</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="container">
+    <svg class="hero-mark moon-mark" viewBox="0 0 100 100"><use href="#moon-mark"/></svg>
+    <h1>Foundational technologies for lunar resources.<br><span class="accent">Engineered with discipline.</span></h1>
+    <p class="hero-sub">Moon Trades is a Romanian deep-tech micro-enterprise building the measurement, intelligence, and robotics layer for In-Situ Resource Utilisation on the Moon — and the multiplanetary future it unlocks.</p>
+    <a href="#partners" class="hero-cta">Explore Partnership →</a>
+    <div class="hero-meta">
+      <span>Lunar ISRU</span>
+      <span>Regolith Intelligence</span>
+      <span>Autonomous Robotics</span>
+      <span>Systems Architecture</span>
+    </div>
+  </div>
+</header>
+
+<section class="block" id="what">
+  <div class="container">
+    <div class="eyebrow">What We Do</div>
+    <h2>Three layers. One mission. A measurable lunar economy.</h2>
+    <p class="lede">Moon Trades operates at the intersection of terrestrial mining heritage and the emerging space resources industry — closing the foundational gaps that current ISRU roadmaps still treat as assumptions.</p>
+
+    <div class="cards">
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 48 48" fill="none" stroke="#5EE8C5" stroke-width="1.5">
+          <circle cx="24" cy="24" r="20"/>
+          <circle cx="24" cy="24" r="12"/>
+          <circle cx="24" cy="24" r="4" fill="#5EE8C5"/>
+          <line x1="24" y1="4" x2="24" y2="14"/>
+          <line x1="24" y1="34" x2="24" y2="44"/>
+        </svg>
+        <h3>ISRU &amp; Regolith Intelligence</h3>
+        <p>Lunar geotechnical characterisation, core sampling methodology, and in-situ mineral assessment — addressing the measurement gap that sits underneath every lunar resource business case.</p>
+      </div>
+
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 48 48" fill="none" stroke="#5EE8C5" stroke-width="1.5">
+          <rect x="10" y="14" width="28" height="20" rx="2"/>
+          <circle cx="18" cy="24" r="2" fill="#5EE8C5"/>
+          <circle cx="30" cy="24" r="2" fill="#5EE8C5"/>
+          <line x1="14" y1="14" x2="14" y2="10"/>
+          <line x1="34" y1="14" x2="34" y2="10"/>
+          <line x1="6" y1="38" x2="14" y2="34"/>
+          <line x1="42" y1="38" x2="34" y2="34"/>
+        </svg>
+        <h3>Autonomous Robotics</h3>
+        <p>Soil intelligence systems and autonomous platforms designed for the lunar surface — built for post-gravity operational environments and human-machine collaboration.</p>
+      </div>
+
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 48 48" fill="none" stroke="#5EE8C5" stroke-width="1.5">
+          <circle cx="24" cy="24" r="3" fill="#5EE8C5"/>
+          <circle cx="8" cy="12" r="2.5"/>
+          <circle cx="40" cy="12" r="2.5"/>
+          <circle cx="8" cy="36" r="2.5"/>
+          <circle cx="40" cy="36" r="2.5"/>
+          <line x1="11" y1="13" x2="22" y2="22"/>
+          <line x1="37" y1="13" x2="26" y2="22"/>
+          <line x1="11" y1="35" x2="22" y2="26"/>
+          <line x1="37" y1="35" x2="26" y2="26"/>
+        </svg>
+        <h3>Systems Architecture</h3>
+        <p>End-to-end design for partners building lunar infrastructure, ISRU pilot operations, and the broader Mearth economy — bridging Earth-side engineering rigour with off-world operational reality.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block apex" id="apex">
+  <div class="container">
+    <div class="apex-grid">
+      <div class="apex-visual">
+        <svg viewBox="0 0 300 300" style="width:100%;max-width:340px;" aria-hidden="true">
+          <defs>
+            <radialGradient id="apexGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#5EE8C5" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#5EE8C5" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="150" cy="150" r="120" fill="url(#apexGlow)"/>
+          <circle cx="150" cy="150" r="100" fill="none" stroke="#5EE8C5" stroke-width="0.5" opacity="0.4"/>
+          <circle cx="150" cy="150" r="70" fill="none" stroke="#5EE8C5" stroke-width="0.5" opacity="0.5"/>
+          <circle cx="150" cy="150" r="40" fill="none" stroke="#5EE8C5" stroke-width="0.5" opacity="0.6"/>
+          <g class="moon-mark" style="color:#F5F5F7" transform="translate(100,100)">
+            <use href="#moon-mark" width="100" height="100"/>
+          </g>
+          <line x1="40" y1="150" x2="80" y2="150" stroke="#5EE8C5" stroke-width="1"/>
+          <line x1="220" y1="150" x2="260" y2="150" stroke="#5EE8C5" stroke-width="1"/>
+          <line x1="150" y1="40" x2="150" y2="80" stroke="#5EE8C5" stroke-width="1"/>
+          <line x1="150" y1="220" x2="150" y2="260" stroke="#5EE8C5" stroke-width="1"/>
+        </svg>
+      </div>
+      <div>
+        <div class="apex-name">FLAGSHIP TECHNOLOGY</div>
+        <h2>A.P.E.X.</h2>
+        <p>Real-time, in-situ mineral and regolith assessment for lunar surface operations. A.P.E.X. delivers measurement where today's roadmaps still rely on assumption — replacing probabilistic resource maps with verified ground truth, before excavation begins.</p>
+        <p>Built on three generations of terrestrial mining and engineering heritage. Designed for the conditions actually present on the Moon — not for the conditions we wish were there.</p>
+        <div class="apex-expansion">
+          A · P · E · X &nbsp;—&nbsp; <strong>Apollo-Powered Exploration eXpedition</strong>
+        </div>
+        <span class="nda-pill">Detailed capabilities available under NDA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block heritage" id="heritage">
+  <div class="container">
+    <div class="eyebrow">Heritage &amp; Philosophy</div>
+    <h2>Built on Earth. For the Moon. With discipline.</h2>
+    <p class="lede">Moon Trades carries forward three generations of mining and engineering heritage into the lunar resources frontier. We believe the path to a multiplanetary civilisation runs through rigorous fundamentals — not through speculation.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <h4>Design with Discipline</h4>
+        <p>Engineering precision meets ethical, human-centred system thinking. The Moon is not a marketing surface.</p>
+      </div>
+      <div class="pillar">
+        <h4>Foundational First</h4>
+        <p>We close the core sampling and measurement gap before scaling the narrative. Data before vision.</p>
+      </div>
+      <div class="pillar">
+        <h4>Collaboration over Competition</h4>
+        <p>We build with — not against — agencies, primes, research institutions, and fellow SMEs. The Mearth economy is a team sport.</p>
+      </div>
+      <div class="pillar">
+        <h4>Elevate Humanity</h4>
+        <p>Every technology we develop is designed to serve people first — on Earth, on the Moon, and on the path between them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="partners">
+  <div class="container">
+    <div class="partners">
+      <div class="eyebrow">For Partners</div>
+      <h2>Let's build the foundational layer of the lunar economy — together.</h2>
+      <p class="lede">Moon Trades actively seeks collaboration with European Space Agency programmes, primes, research institutions, and fellow SMEs working on lunar resources, ISRU demonstrators, robotic exploration, and the Mearth economy. Technical depth and partnership packages are available under NDA.</p>
+      <div class="partner-tags">
+        <span class="tag">ESA Terrae Novae</span>
+        <span class="tag">Lunar Exploration Programmes</span>
+        <span class="tag">ISRU Demonstrators</span>
+        <span class="tag">Lunar Lander Payloads</span>
+        <span class="tag">Discovery &amp; Preparation</span>
+        <span class="tag">OSIP</span>
+        <span class="tag">SME Initiatives</span>
+      </div>
+      <a href="mailto:contact@moontrades.org" class="hero-cta">contact@moontrades.org →</a>
+    </div>
+  </div>
+</section>
+
+<section class="block advisory-mention" id="advisory">
+  <div class="container">
+    <span class="nda-pill" style="cursor:default;">Also from Moon Trades — AdvisoryForge</span>
+    <p>
+      Alongside our ISRU work, we help Romanian deep-tech SMEs navigate ESA-STAR registration —
+      drawing on our own path through that process.
+      <a href="https://calendly.com/eronim-mihoc-com/30min" target="_blank" rel="noopener" class="inline-link">
+        Want to learn more? →
+      </a>
+    </p>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container">
+    <div class="wordmark">
+      <svg class="moon-mark" viewBox="0 0 100 100"><use href="#moon-mark"/></svg>
+      MOON TRADES
+    </div>
+    <div class="links">
+      <a href="mailto:contact@moontrades.org">contact@moontrades.org</a>
+      <a href="https://www.linkedin.com/company/moontrades" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="copyright">
+      © 2026 Moon Trades S.R.L. &nbsp;·&nbsp; Iași, Romania
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
