@@ -1,0 +1,20 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "blog"
+    label: "Articole AdvisoryForge / Moon Trades"
+    folder: "content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Titlu", name: "title", widget: "string"}
+      - {label: "Dată publicare", name: "date", widget: "datetime"}
+      - {label: "Autor", name: "author", widget: "string", default: "Eronim Mihoc"}
+      - {label: "Rezumat (1-2 propoziții, pentru preview)", name: "excerpt", widget: "text"}
+      - {label: "Conținut articol", name: "body", widget: "markdown"}
+      - {label: "Publicat", name: "published", widget: "boolean", default: true}
