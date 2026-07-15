@@ -48,16 +48,30 @@
         </svg>
         <span style="font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:16px; letter-spacing:0.06em;">MOON TRADES</span>
       </a>
-      <ul style="display:flex; gap:32px; list-style:none;">
-        <li><a href="#what" style="color:var(--text-muted); text-decoration:none; font-size:13.5px; font-weight:500;">What We Do</a></li>
-        <li><a href="#apex" style="color:var(--text-muted); text-decoration:none; font-size:13.5px; font-weight:500;">A.P.E.X.</a></li>
-        <li><a href="#heritage" style="color:var(--text-muted); text-decoration:none; font-size:13.5px; font-weight:500;">Philosophy</a></li>
-        <li><a href="#partners" style="color:var(--text-muted); text-decoration:none; font-size:13.5px; font-weight:500;">Partners</a></li>
-        <li><a href="/blog/" style="color:var(--text-muted); text-decoration:none; font-size:13.5px; font-weight:500;">Blog</a></li>
-        <li><a href="#contact" style="color:var(--text-muted); text-decoration:none; font-size:13.5px; font-weight:500;">Contact</a></li>
-      </ul>
+      <button id="menuToggle" aria-label="Menu" style="background:none; border:1px solid var(--hairline); border-radius:7px; width:40px; height:40px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; cursor:pointer;">
+        <span style="width:18px; height:1.5px; background:var(--text);"></span>
+        <span style="width:18px; height:1.5px; background:var(--text);"></span>
+        <span style="width:18px; height:1.5px; background:var(--text);"></span>
+      </button>
     </div>
+    <ul id="menuList" style="display:none; list-style:none; max-width:1200px; margin:0 auto; padding:8px 32px 20px; flex-direction:column; gap:2px; border-top:1px solid var(--hairline);">
+      <li><a href="#what" style="display:block; padding:10px 0; color:var(--text-muted); text-decoration:none; font-size:14.5px; font-weight:500;">What We Do</a></li>
+      <li><a href="#apex" style="display:block; padding:10px 0; color:var(--text-muted); text-decoration:none; font-size:14.5px; font-weight:500;">A.P.E.X.</a></li>
+      <li><a href="#heritage" style="display:block; padding:10px 0; color:var(--text-muted); text-decoration:none; font-size:14.5px; font-weight:500;">Philosophy</a></li>
+      <li><a href="#partners" style="display:block; padding:10px 0; color:var(--text-muted); text-decoration:none; font-size:14.5px; font-weight:500;">Partners</a></li>
+      <li><a href="/blog/" style="display:block; padding:10px 0; color:var(--text-muted); text-decoration:none; font-size:14.5px; font-weight:500;">Blog</a></li>
+      <li><a href="#contact" style="display:block; padding:10px 0; color:var(--text-muted); text-decoration:none; font-size:14.5px; font-weight:500;">Contact</a></li>
+    </ul>
   </nav>
+  <script>
+    document.getElementById('menuToggle').addEventListener('click', function() {
+      var list = document.getElementById('menuList');
+      list.style.display = (list.style.display === 'none' || !list.style.display) ? 'flex' : 'none';
+    });
+    document.querySelectorAll('#menuList a').forEach(function(a) {
+      a.addEventListener('click', function() { document.getElementById('menuList').style.display = 'none'; });
+    });
+  </script>
 
   <header id="top" style="max-width:1200px; margin:0 auto; padding:120px 32px 90px; text-align:center;">
     <svg viewBox="0 0 120 120" width="120" height="120" style="margin:0 auto 44px; display:block;" xmlns="http://www.w3.org/2000/svg">
@@ -157,7 +171,7 @@
         <span style="border:1px solid var(--hairline); color:var(--text-muted); padding:7px 15px; border-radius:999px; font-size:12.5px;">OSIP</span>
         <span style="border:1px solid var(--hairline); color:var(--text-muted); padding:7px 15px; border-radius:999px; font-size:12.5px;">SME Initiatives</span>
       </div>
-      <a href="#" onclick="window.location.href='mailto:'+'contact'+'@'+'moontrades.org';return false;" style="display:inline-flex; align-items:center; gap:8px; background:var(--terra); color:#0A1929; text-decoration:none; padding:13px 26px; border-radius:7px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;"><span class="__cf_email__" data-cfemail="55363a3b2134362115383a3a3b2127343130267b3a2732">[email&#160;protected]</span> →</a>
+      <a href="#" onclick="window.location.href='mailto:'+'contact'+'@'+'moontrades.org';return false;" style="display:inline-flex; align-items:center; gap:8px; background:var(--terra); color:#0A1929; text-decoration:none; padding:13px 26px; border-radius:7px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;"><span class="__cf_email__" data-cfemail="3b5854554f5a584f7b565454554f495a5f5e481554495c">[email&#160;protected]</span> →</a>
     </div>
   </section>
 
