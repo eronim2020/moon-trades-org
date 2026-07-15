@@ -1,4 +1,4 @@
- <!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -23,6 +23,18 @@
   ::-webkit-scrollbar { width:8px; }
   ::-webkit-scrollbar-thumb { background:rgba(245,245,247,0.15); border-radius:4px; }
 </style>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
 </head>
 <body>
 <div style="position:relative;">
@@ -145,7 +157,7 @@
         <span style="border:1px solid var(--hairline); color:var(--text-muted); padding:7px 15px; border-radius:999px; font-size:12.5px;">OSIP</span>
         <span style="border:1px solid var(--hairline); color:var(--text-muted); padding:7px 15px; border-radius:999px; font-size:12.5px;">SME Initiatives</span>
       </div>
-      <a href="#" onclick="window.location.href='mailto:'+'contact'+'@'+'moontrades.org';return false;" style="display:inline-flex; align-items:center; gap:8px; background:var(--terra); color:#0A1929; text-decoration:none; padding:13px 26px; border-radius:7px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;"><span class="__cf_email__" data-cfemail="0e6d61607a6f6d7a4e636161607a7c6f6a6b7d20617c69">[email&#160;protected]</span> →</a>
+      <a href="#" onclick="window.location.href='mailto:'+'contact'+'@'+'moontrades.org';return false;" style="display:inline-flex; align-items:center; gap:8px; background:var(--terra); color:#0A1929; text-decoration:none; padding:13px 26px; border-radius:7px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;"><span class="__cf_email__" data-cfemail="55363a3b2134362115383a3a3b2127343130267b3a2732">[email&#160;protected]</span> →</a>
     </div>
   </section>
 
