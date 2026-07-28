@@ -56,10 +56,17 @@ function parseFrontmatter(raw) {
   const m = raw.match(/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/);
   if (!m) return { data: {}, body: raw };
   const data = {};
+  let key = null;
   m[1].split("\n").forEach(line => {
-    const mm = line.match(/^([a-zA-Z_]+):\s*"?(.*?)"?\s*$/);
-    if (mm) data[mm[1]] = mm[2];
+    const mm = line.match(/^([a-zA-Z_]+):\s*(.*)$/);
+    if (mm) {
+      key = mm[1];
+      data[key] = mm[2].trim();
+    } else if (key && /^\s+\S/.test(line)) {
+      data[key] += " " + line.trim();
+    }
   });
+  for (const k in data) data[k] = data[k].replace(/^"+|"+$/g, "");
   return { data, body: m[2].trim() };
 }
 
