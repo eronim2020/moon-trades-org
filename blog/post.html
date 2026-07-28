@@ -59,8 +59,6 @@ function parseFrontmatter(raw) {
   });
   for (const k in data) data[k] = data[k].replace(/^"+|"+$/g, "");
   return { data, body: m[2].trim() };
-  });
-  return { data, body: m[2].trim() };
 }
 
 function simpleMarkdown(md) {
